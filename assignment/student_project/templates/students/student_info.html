@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for student_info in student_info %}
+<table class="table">
+    <div>
+        <thead>
+        <tr>
+            <th scope="col">Field</th>
+            <th scope="col">Data</th>
+
+        </tr>
+        </thead>
+    </div>
+    <div>
+        <tbody>
+        <tr>
+            <td>ID</td>
+            <td>{{student_info.id}}</td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <td>Name</td>
+            <td>{{student_info.name}}</td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <td>Email</td>
+            <td>{{student_info.email}}</td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <td>Gender</td>
+            <td>{{student_info.gender}}</td>
+        </tr>
+
+    </div>
+    {% endfor %}
+
+    {% endblock %}

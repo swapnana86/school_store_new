@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{%load crispy_forms_tags %}
+
+<h2>Student Form</h2>
+
+<form method="post" id="studentForm" data-course-url="{% url 'ajax_load_course' %}">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Submit">
+</form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_dept").change(function () {
+        const url = $("#studentForm").attr("data-course-url");  // get the url of the `load_course` view
+        const deptId = $(this).val();  // get the selected dept ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /students/ajax/load-course/ )
+            data: {
+                'dept_id': deptId       // add the dept id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_course` view function
+                $("#id_course").html(data);  // replace the contents of the course input with the data that came from the server
+                /*
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (course) {
+                    html_data += `<option value="${course.id}">${course.name}</option>`
+                });
+                console.log(html_data);
+                $("#id_course").html(html_data);
+                */
+            }
+        });
+
+    });
+</script>
+{% endblock %}

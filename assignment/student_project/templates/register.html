@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{%block content %}
+
+<h6> Sign Up Here!</h6>
+<form action="/signup" method="POST">
+{% csrf_token %}
+    <label>Username</label>
+    <input type="text" name="username" placeholder="Enter your username(only letters and numbers)"Required><br>
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Enter your password(only letters and numbers)"Required><br>
+    <label>Confirm Password</label>
+    <input type="password" name="c_password" placeholder="Enter your confirm password(only letters and numbers)"Required><br>
+    <button type="submit">Sign Up</button>
+
+</form>
+{% endblock %}
